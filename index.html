@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Presente #16 Especial para minha Eve 💜✨</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black;
+      overflow: hidden;
+    }
+
+    /* Fondo con estrellas animadas */
+    .stars {
+      width: 2px;
+      height: 2px;
+      background: white;
+      position: absolute;
+      animation: twinkle 2s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .container {
+      background: rgba(50, 0, 70, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      z-index: 10;
+    }
+
+    h1, h2 {
+      color: #e0b3ff;
+    }
+
+    /* Botones con efecto galáctico */
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #9b4dca, #b066ff);
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #b066ff;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #e0b3ff;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #options button.correct {
+      background: green;
+    }
+    #options button.incorrect {
+      background: crimson;
+    }
+    #bonus-options button {
+      min-width: 100px;
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- 🎵 Música de fondo -->
+<audio id="bg-music" autoplay loop playsinline>
+  <source src="mmusica.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+</audio>
+
+<script>
+  function playMusic() {
+    const audio = document.getElementById("bg-music");
+    audio.play().catch(() => {
+      console.log("⚠️ Reprodução automática bloqueada, aguardando interação do usuário.");
+    });
+  }
+
+  function checkName(){
+    const name = document.getElementById("nameInput").value.trim().toLowerCase();
+    if(name === "eveh"){
+      document.getElementById("start-screen").classList.add("hidden");
+      document.getElementById("welcome-screen").classList.remove("hidden");
+      playMusic(); // 🎵 ativa a música aqui
+    } else {
+      document.getElementById("error").style.display="block";
+    }
+  }
+</script>
+
+  <!-- Partículas (estrellas) -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement("div");
+      star.className = "stars";
+      star.style.top = Math.random() * window.innerHeight + "px";
+      star.style.left = Math.random() * window.innerWidth + "px";
+      star.style.animationDuration = (1 + Math.random() * 3) + "s";
+      document.body.appendChild(star);
+    }
+  </script>
+
+  <!-- Tela inicial -->
+  <div class="container" id="start-screen">
+    <h1>💜 Presente #16 💜</h1>
+    <p>Digite seu nome especial para começar 💜<br>
+    Dica: começa com nao sei, e termina em tampouco sei, voce usa muito nos jogos 💫</p>
+    <input type="text" id="nameInput" placeholder="Clave secreta">
+    <br><br>
+    <button onclick="checkName()">Continuar 🚀</button>
+    <p id="error" style="color: pink; display:none;">Opsii... só quem é uma filha da puta pode entrar! 😏</p>
+  </div>
+
+  <!-- Tela de boas-vindas -->
+  <div class="container hidden" id="welcome-screen" style="background: rgba(30,0,50,0.95);">
+    <h2>✨ Bem-vinda top global #1 Eveh 🌌</h2>
+    <p>A seu jogo de aniversário 🎮💜 criado pela Daleth para te irritar um rato :3</p>
+    <button onclick="startQuiz()">Começar ➡️</button>
+  </div>
+
+  <!-- Tela do quiz -->
+  <div class="container hidden" id="quiz-container">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <button id="next-btn" onclick="nextQuestion()" class="hidden">Próxima ➡️</button>
+  </div>
+
+  <!-- Pergunta bônus -->
+  <div class="container hidden" id="bonus-screen">
+    <h2>👉 Pergunta Bônus</h2>
+    <p>"Posso passar seu aniversário contigo, ou ainda tenho que ganhar esse direito? :,c eu te amo, me aceita, me usa"</p>
+    <div id="bonus-options">
+      <button id="yes-btn" onclick="endQuiz()">SIMMM ❤️</button>
+      <button id="no-btn" onclick="shrinkNo()">Nem,nao queru 🙃</button>
+    </div>
+  </div>
+
+  <!-- Tela final -->
+  <div class="container hidden" id="end-screen">
+    <h2>🌠 Parabéns, minha supernova 🌠</h2>
+    <p>
+      Você completou o quiz com sucesso, e isso só prova o quanto você é importante para se mesma 💜.<br><br>
+      Entre bilhões de estrelas no universo, você é a mais brilhante de todas para minha pessoa.  
+      Você é a pessoa mais importante da minha vida, o meu porto seguro, meu lar... e por isso quero que este aniversário seja o mais especial e muito mais que é meu primeiro com voce :3.  
+      💫 Obrigado por existir, minha estrela única, meu bem, minha Eve. 💜✨
+    </p>
+  </div>
+
+  <script>
+    // Perguntas
+    const questions = [
+     {q:"Qual é o apelido especial que um amigo te deu?", o:["Baby","Titi","Cupcake","Wackestone"], a:[1]},
+    {q:"Se tivesse que escolher um universo para viver, qual escolheria?", o:["Mundo zumbi 🧟‍♀️","Mundo de princesas 👑","Mundo medieval ⚔️","Mundo futurista 🤖"], a:[0]},
+    {q:"Qual animal marinho você mais ama?", o:["Golfinho 🐬","Tartaruga 🐢","Tubarão 🦈","Polvo 🐙"], a:[1]},
+    {q:"Seu suco favorito é…", o:["Maracujá 🥭","Laranja 🍊","Uva 🍇","Melancia 🍉"], a:[0]},
+    {q:"Se fosse escolher entre praia e montanha, você ficaria com…", o:["Praia 🌊","Montanha ⛰️"], a:[0]},
+    {q:"Qual é a sua cor favorita?", o:["Roxo 💜","Azul 💙","Preto 🖤","Rosa 🌸"], a:[0]},
+    {q:"Você prefere…", o:["Filme de romance 🎬","Filme de terror 👻","Filme de heróis 🦸","Filme de comédia 😂"], a:[0,1]},
+    {q:"Qual é sua vibe favorita de noite?", o:["Olhar estrelas ✨","Assistir série 📺","Dormir cedo 🛌","Sair pra festa 🎉"], a:[0,1]},
+    {q:"Qual palavra você usaria muito em uma conversa?", o:["Vai toma no cu 😅","Vai se foder 🤬","Drama","bocetabem?"], a:[0,1,3]},
+    {q:"Se tivesse que escolher um pet para ter agora, qual seria?", o:["Cachorro 🐶","Gato 🐱","Peixe 🐠","Tartaruga marinha 🐢"], a:[0]},
+    {q:"Qual estilo de jogo você curte mais?", o:["Zumbi survival 🧟","SKY filhos da puta","Puzzles 🧩","Fazendinha 🌾"], a:[0,1]},
+    {q:"Como você gosta de chamar a sua mãe?", o:["Vagabunda","Cadela","Dislexa","Disléxica"], a:[2]},
+    {q:"Qual comida você curte mais?", o:["Batata 🍠","Cebola 🧅","Pizza 🍕","Sushi 🍣"], a:[0,1]},
+    {q:"Você prefere passar tempo…", o:["Jogando 🎮","Estudando 📚","Limpando casa 🧹","Ligar a Daleth"], a:[0,3]},
+    {q:"Para ti, Daleth é…", o:["Uma bobona","Sua muie","Uma amiga","Uma queridinha"], a:[0,1]},
+    {q:"Se você fosse ao México, o que comeria primeiro?", o:["Tacos 🌮","Burritos 🌯","Enchiladas 🫔","Nachos 🧀"], a:[0,1]},
+    {q:"Qual sobremesa você gosta mais?", o:["Bolo 🎂","Sorvete 🍦","Brigadeiro 🍮","Chocolate 🍫"], a:[0,3]},
+    {q:"Qual palavra é mais “você”?", o:["Cala boca ","Não gostei 😒","Querida 💕","Poha 🙂"], a:[0,3]},
+    {q:"Quais são seus cantores favoritos?", o:["Humbe 🎶","Melanie Martinez 🧸","Uns que deixam voce com T 🎤","Manuel Medrano bien salido de la basura 🔥"], a:[0,1,2]}
+  ];
+
+    let currentQuestion = 0;
+
+    function startQuiz(){
+      document.getElementById("welcome-screen").classList.add("hidden");
+      document.getElementById("quiz-container").classList.remove("hidden");
+      showQuestion();
+    }
+
+    function showQuestion(){
+      const q = questions[currentQuestion];
+      document.getElementById("question").textContent = `${currentQuestion+1}. ${q.q}`;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML="";
+      q.o.forEach((opt,i)=>{
+        const btn=document.createElement("button");
+        btn.textContent=opt;
+        btn.onclick=()=>checkAnswer(i,btn);
+        optionsDiv.appendChild(btn);
+      });
+      document.getElementById("next-btn").classList.add("hidden");
+    }
+
+    function checkAnswer(index,btn){
+      const q=questions[currentQuestion];
+      if(q.a.includes(index)){
+        btn.classList.add("correct");
+      }else{
+        btn.classList.add("incorrect");
+      }
+      Array.from(document.getElementById("options").children).forEach(b=>b.disabled=true);
+      document.getElementById("next-btn").classList.remove("hidden");
+    }
+
+    function nextQuestion(){
+      currentQuestion++;
+      if(currentQuestion<questions.length){
+        showQuestion();
+      }else{
+        document.getElementById("quiz-container").classList.add("hidden");
+        document.getElementById("bonus-screen").classList.remove("hidden");
+      }
+    }
+
+    let noSize=100;
+    function shrinkNo(){
+      noSize-=20;
+      if(noSize<20) noSize=20;
+      document.getElementById("no-btn").style.fontSize=noSize+"%";
+      let yesBtn=document.getElementById("yes-btn");
+      yesBtn.style.transform=`scale(${2-(noSize/100)})`;
+    }
+
+    function endQuiz(){
+      document.getElementById("bonus-screen").classList.add("hidden");
+      document.getElementById("end-screen").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
